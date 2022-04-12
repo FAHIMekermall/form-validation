@@ -81,6 +81,14 @@ form input:focus {
 	width: 461px;
 	height: 50px;
 }
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
 .input-container p {
 	display: flex;
 	font-family: "Sen", sans-serif;

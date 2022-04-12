@@ -23,7 +23,7 @@ function App() {
 				value: "",
 				error: "Name must contain at least 2 characters",
 			})
-		} else if (namePart[namePart.length - 1] == "") {
+		} else if (namePart[namePart.length - 1] === "") {
 			setName({
 				value: "",
 				error: "Name must contain at least 2 characters",
@@ -36,12 +36,12 @@ function App() {
 		} else {
 			setName({ value: "", error: "" })
 		}
-		if (event.target.value == "") {
+		if (event.target.value === "") {
 			setName({ value: "", error: "" })
 		}
 	}
 
-	const handleuserNameInput = (event) => {
+	const handleUserNameInput = (event) => {
 		if (
 			event.target.value.length >= 1 &&
 			!/[a-zA-Z]/.test(event.target.value[0])
@@ -82,7 +82,7 @@ function App() {
 		} else {
 			setPassword({ value: event.target.value, error: "" })
 		}
-		if (event.target.value == "") {
+		if (event.target.value === "") {
 			setPassword({ value: "", error: "" })
 		}
 	}
@@ -92,15 +92,27 @@ function App() {
 		} else {
 			setConfirmPassword({ value: event.target.value, error: "" })
 		}
-		if (event.target.value == "") {
+		if (event.target.value === "") {
 			setConfirmPassword({ value: "", error: "" })
+		}
+	}
+	const handleNumberInput = (event) => {
+		const first2 = event.target.value.slice(0, 2)
+		if (first2 !== "01") {
+			setNumber({
+				value: "",
+				error: "Only bangladeshi number's is available",
+			})
+		} else if (event.target.value.length != 11) {
+			setNumber({ value: "", error: "Your number must be 11 digit" })
+		} else {
+			setNumber({ value: event.target.value, error: "" })
 		}
 	}
 	return (
 		<div>
 			<div className="login-container">
 				<form onSubmit={handleSubmit}>
-          
 					<h1 style={{ fontFamily: "monospace" }}>
 						Create an account
 					</h1>
@@ -117,7 +129,7 @@ function App() {
 					)}
 
 					<input
-						onChange={handleuserNameInput}
+						onChange={handleUserNameInput}
 						placeholder="username"
 						type="text"
 						name="userName"
@@ -126,6 +138,17 @@ function App() {
 					/>
 					{userName.error && (
 						<small className="error">{userName.error}</small>
+					)}
+					<input
+						onChange={handleNumberInput}
+						placeholder="Phone number"
+						type="number"
+						name="phone"
+						id="phone"
+						required
+					/>
+					{number.error && (
+						<small className="error">{number.error}</small>
 					)}
 					<input
 						onChange={handlePasswordInput}
