@@ -1,38 +1,135 @@
-.App {
-  text-align: center;
+.login-container {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 109px;
+	justify-content: center;
+}
+.login-container button {
+	background: #ffffff;
+	border: 1px solid #c7c7c7;
+	box-sizing: border-box;
+	border-radius: 57px;
+	width: 461px;
+	height: 51px;
+	font-family: "Montserrat";
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	line-height: 20px;
+	/* identical to box height */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #000000;
+	position: relative;
+	margin-top: 9px;
+	cursor: pointer;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.login-container button img {
+	position: absolute;
+	left: 8px;
+}
+.button-container {
+	margin-top: 19px;
+}
+form {
+	display: flex;
+	flex-direction: column;
+	width: 570px;
+	background-color: rgba(255, 255, 255, 0.2);
+	border: 1px solid #ababab;
+	box-sizing: border-box;
+	border-radius: 4px;
+	justify-content: center;
+	align-items: center;
+	padding: 46px 58px;
+}
+form h1 {
+	font-family: "Montserrat";
+	font-style: normal;
+	font-weight: 700;
+	font-size: 24px;
+	line-height: 29px;
+	text-align: left;
+	width: 461px;
+	color: #000000;
+}
+form input {
+	width: 461px;
+	height: 50px;
+	border: none;
+	border-bottom: 1px solid #c5c5c5;
+}
+form input::placeholder {
+	color: #000000;
+	font-family: "Montserrat", sans-serif;
+	font-style: normal;
+	font-weight: 500;
+}
+form input:focus {
+	outline: none !important;
+	border-bottom: 2px solid #7e857b;
+}
+#checkbox {
+	width: 16px;
+}
+.input-container {
+	display: flex;
+	justify-content: space-between;
+	width: 461px;
+	height: 50px;
+}
+.input-container p {
+	display: flex;
+	font-family: "Sen", sans-serif;
+	align-items: center;
+	font-style: normal;
+	font-weight: 500;
+}
+.error {
+	color: red;
+	text-align: left;
+	width: 100%;
+}
+#login-btn {
+	background: #f9a31a;
+	font-family: "Sen", sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	border-radius: 3px;
+	cursor: pointer;
+	margin-top: 36px;
+	border: 0px;
+	outline: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+.forgot-password {
+	font-family: "Montserrat" !important;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	cursor: pointer;
+	text-decoration-line: underline;
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	color: #f9a51a;
 }
-
-.App-link {
-  color: #61dafb;
+.create-account-redirect {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 461px;
+	height: 50px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.create-account-redirect a:nth-child(2) {
+	font-family: "Montserrat" !important;
+	font-style: normal;
+	font-weight: 500;
+	font-size: 16px;
+	cursor: pointer;
+	text-decoration-line: underline;
+	margin-left: 5px;
+	color: #f9a51a;
 }
