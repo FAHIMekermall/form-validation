@@ -4,8 +4,9 @@ import { useState } from "react"
 function App() {
 	const [name, setName] = useState({ value: "", error: "" })
 	const [number, setNumber] = useState({ value: "", error: "" })
-	const [userName, setuserName] = useState({ value: "", error: "" })
+	const [userName, setUserName] = useState({ value: "", error: "" })
 	const [password, setPassword] = useState({ value: "", error: "" })
+
 	const [confirmPassword, setConfirmPassword] = useState({
 		value: "",
 		error: "",
@@ -20,12 +21,17 @@ function App() {
 		if (namePart.length < 2) {
 			setName({
 				value: "",
-				error: "name must contain at least 2 characters",
+				error: "Name must contain at least 2 characters",
 			})
 		} else if (namePart[namePart.length - 1] == "") {
 			setName({
 				value: "",
 				error: "Name must contain at least 2 characters",
+			})
+		} else if (/[a-z]/.test(event.target.value[0])) {
+			setName({
+				value: "",
+				error: "Name must start with capital letter",
 			})
 		} else {
 			setName({ value: "", error: "" })
@@ -36,7 +42,22 @@ function App() {
 	}
 
 	const handleuserNameInput = (event) => {
-		setuserName({ value: event.target.value, error: "" })
+		if (
+			event.target.value.length >= 1 &&
+			!/[a-zA-Z]/.test(event.target.value[0])
+		) {
+			setUserName({
+				value: "",
+				error: "Username should start with alphabetic character",
+			})
+		} else if (/[A-Z]/.test(event.target.value)) {
+			setUserName({
+				value: "",
+				error: "You should use all lowercase letter in user",
+			})
+		} else {
+			setUserName({ value: event.target.value, error: "" })
+		}
 	}
 	const handlePasswordInput = (event) => {
 		if (event.target.value.length < 8) {
@@ -49,6 +70,15 @@ function App() {
 				value: "",
 				error: "You need minimum 1 uppercase letter",
 			})
+		} else if (
+			!/[!"`'#%&,:;<>=@{}~\$\(\)\*\+\/\\\?\[\]\^\|]+/.test(
+				event.target.value
+			)
+		) {
+			setPassword({
+				value: "",
+				error: "You need minimum 1 special characters",
+			})
 		} else {
 			setPassword({ value: event.target.value, error: "" })
 		}
@@ -59,6 +89,8 @@ function App() {
 	const handleConfirmPasswordInput = (event) => {
 		if (password.value !== event.target.value) {
 			setConfirmPassword({ value: "", error: "Password mismatch" })
+		} else {
+			setConfirmPassword({ value: event.target.value, error: "" })
 		}
 		if (event.target.value == "") {
 			setConfirmPassword({ value: "", error: "" })
@@ -67,8 +99,11 @@ function App() {
 	return (
 		<div>
 			<div className="login-container">
-				<form>
-					<h1 style={{fontFamily:'monospace'}}>Create an account</h1>
+				<form onSubmit={handleSubmit}>
+          
+					<h1 style={{ fontFamily: "monospace" }}>
+						Create an account
+					</h1>
 					<input
 						onChange={handleNameInput}
 						placeholder="Full Name"
@@ -82,12 +117,16 @@ function App() {
 					)}
 
 					<input
+						onChange={handleuserNameInput}
 						placeholder="username"
 						type="text"
 						name="userName"
 						id="userName"
 						required
 					/>
+					{userName.error && (
+						<small className="error">{userName.error}</small>
+					)}
 					<input
 						onChange={handlePasswordInput}
 						placeholder="Password"
