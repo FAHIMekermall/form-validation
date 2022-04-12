@@ -53,9 +53,12 @@ function App() {
 		} else if (/[A-Z]/.test(event.target.value)) {
 			setUserName({
 				value: "",
-				error: "You should use all lowercase letter in user",
+				error: "You should use all lowercase letter in username",
 			})
-		} else {
+		
+		} else if(/[\!\@\#\$\%\^\&\*\)\(\+\=\.\<\>\{\}\[\]\:\;\'\"\|\~\`\_\-]/g.test(event.target.value)) {
+			setUserName({ value:'', error: "You cant use special character in username"})}
+		 else {
 			setUserName({ value: event.target.value, error: "" })
 		}
 	}
